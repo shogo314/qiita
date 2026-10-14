@@ -1,0 +1,54 @@
+# 競技プログラミングでdcを使う(5/8) の図
+
+[b05_01]
+setup = "3"
+steps = ["[2*]", "x"]
+
+[b05_02]
+setup = "[2*]sa 3"
+steps = ["la", "x", "la", "x"]
+
+[a072_01]
+setup = "[s.0]sa"
+input = "48 58"
+steps = ["?", "-", "d", "0", ">a"]
+
+[a033_01]
+setup = "[s.[SAME]]sa"
+input = "2222"
+steps = ["[DIFFERENT]", "?", "1111", "%", "0", "=a"]
+wrap = 5
+
+[a096_01]
+setup = "[1+]sx"
+input = "5 5"
+steps = ["?", "sb", "d", "1-", "r", "lb", "!<x"]
+wrap = 5
+
+[a063_01]
+setup = "[[error]pq]sa"
+input = "6 3"
+steps = ["?", "+", "d", "9", "<a"]
+
+[a063_02]
+setup = "[[error]pq]sa"
+input = "6 4"
+steps = ["?", "+", "d", "9", "<a"]
+
+[b05_03]
+setup = "[r]sr 3 5"
+steps = ["d", "3R", "d", "3R", "<r", "s."]
+wrap = 4
+
+[b05_04]
+setup = "[r]sr 5 3"
+steps = ["d", "3R", "d", "3R", "<r", "s."]
+wrap = 4
+
+[a072_02]
+input = "100 17"
+code = "?-kK"
+
+[a072_03]
+input = "48 58"
+code = "?-kK"
