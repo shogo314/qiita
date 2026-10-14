@@ -1,9 +1,47 @@
 # 競技プログラミングでdcを使う(3/?) の図
 
-[b03_sl]
+[b03_01]
+setup = "7 2 5"
+code = "f"
+
+[b03_02]
+setup = "2"
+code = "d"
+
+[b03_03]
+setup = "3 2"
+code = "r"
+
+[b03_04]
 setup = "1 2 3"
 code = "sxlxlx"
 
-[b03_P]
+[b03_05]
 setup = "[cde]"
 code = "24930PP"
+
+[b03_06]
+setup = "[f][e][d][c][b][a]"
+steps = ["4", "R"]
+
+[b03_07]
+setup = "[f][e][d][c][b][a]"
+steps = ["0 4-", "R"]
+
+[a005_01]
+input = "4 7"
+code = "?r/"
+
+[a012_01]
+input = "1 2"
+code = "?n[ ]Pp"
+
+[a014_02]
+input = "7\n3"
+steps = ["?", "?", "d", "d", "4R", "r", "%", "-", "r", "%"]
+wrap = 5
+
+[a014_01]
+input = "7\n3"
+steps = ["?", "d", "1-", "?", "d", "sa", "/", "1+", "la", "*", "r", "-"]
+wrap = 5

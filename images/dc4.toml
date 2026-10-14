@@ -1,0 +1,59 @@
+# 競技プログラミングでdcを使う(4/?) の図
+
+[b_04_01]
+setup = "1 2"
+code = ">0"
+
+[b_04_02]
+setup = "2 2"
+code = ">0"
+
+[b_04_03]
+setup = "1 2"
+code = "!>0"
+
+[b_04_04]
+setup = "2 2"
+code = "!>0"
+
+[b_04_05]
+setup = "2 1"
+code = "<0"
+
+[b_04_06]
+setup = "1 2"
+code = "<0"
+
+[b_04_07]
+setup = "2 1"
+code = "!<0"
+
+[b_04_08]
+setup = "1 2"
+code = "!<0"
+
+[b_04_09]
+setup = "2 2"
+code = "=0"
+
+[b_04_10]
+setup = "2 1"
+code = "=0"
+
+[b_04_11]
+setup = "2 2"
+code = "!=0"
+
+[b_04_12]
+setup = "2 1"
+code = "!=0"
+
+[a_016_1]
+setup = "[NO][YES]"
+input = "1 1"
+code = "?%0=0r"
+
+[a_016_2]
+setup = "[NO][YES]"
+input = "2 29"
+code = "?%0=0r"

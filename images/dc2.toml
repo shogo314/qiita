@@ -4,6 +4,10 @@
 steps = ["2", "13"]
 labels = ["2を積む", "13を積む"]
 
+[b02_02]
+input = "5 3\n9"
+code = "??"
+
 [b02_03]
 setup = "6 8"
 code = "pn"
@@ -12,10 +16,51 @@ code = "pn"
 setup = "6 8"
 code = "+"
 
-[b02_11]
-setup = "B"
-code = "v"
+[b02_05]
+setup = "8 2"
+code = "-"
+
+[b02_06]
+setup = "3 4"
+code = "*"
+
+[b02_07]
+setup = "11 4"
+code = "/"
+
+[b02_08]
+setup = "11 4"
+code = "%"
+
+[b02_09]
+setup = "3 2"
+code = "^"
+
+[a004_01]
+input = "1000"
+code = "?2*"
+
+[a009_01]
+input = "2"
+code = "?1+2/"
 
 [a001_01]
 input = "15\n10"
 code = "??-"
+
+[a017_01]
+input = "50 7\n40 8\n30 9"
+code = "?*?*?*++A/"
+wrap = 5
+
+[a023_01]
+input = "23"
+code = "?A~+"
+
+[b02_10]
+setup = "5 2 7"
+code = "|"
+
+[b02_11]
+setup = "B"
+code = "v"

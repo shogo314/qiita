@@ -19,6 +19,7 @@
     # steps = ["6 8", "+"]  # code の代わりに、矢印ごとのコードを並べてもよい
     # labels = ["8を足す"]  # 矢印のラベル（省略するとコードがそのまま入る）
     # input = "5 3\\n9"     # ? で読み込む入力
+    # wrap = 5              # 1行に並べる状態の数（長い図を折り返す）
 """
 
 import argparse
@@ -573,6 +574,7 @@ HEAD_LEN = 60  # 矢じりの長さ
 HEAD_W = 80  # 矢じりの幅
 LABEL_GAP = 30  # ラベルと矢印の間隔
 MARGIN = 20
+ROW_GAP = 40  # 折り返したときの行の間隔
 SUPERSAMPLE = 3
 
 
@@ -585,8 +587,11 @@ def find_font(path):
     sys.exit("dcstack: 日本語フォントが見つかりません。定義ファイルの [defaults] に font を指定してください")
 
 
-def render(states, labels, font_path, scale=1.0):
-    """states: 各段階のスタック（下から順の表記のリスト）。labels: 矢印のラベル。"""
+def render(states, labels, font_path, scale=1.0, wrap=0):
+    """states: 各段階のスタック（下から順の表記のリスト）。labels: 矢印のラベル。
+
+    wrap を指定すると、1行に wrap 個の状態を並べて折り返す。
+    """
     u = scale * SUPERSAMPLE
 
     def px(x):
@@ -603,60 +608,75 @@ def render(states, labels, font_path, scale=1.0):
     pitch = floor_w + px(FLOOR_GAP)
     cell_h = px(CELL_H)
 
-    # まず床を y = 0 として座標を計算し、あとで全体をずらす
-    def top(s):
-        return -cell_h * len(s)
+    def row(states, labels):
+        """1行分の図を描く。"""
+        # まず床を y = 0 として座標を計算し、あとで全体をずらす
+        def top(s):
+            return -cell_h * len(s)
 
-    arrows = []
-    for n, label in enumerate(labels):
-        x0 = n * pitch + floor_w - px(ARROW_IN)
-        x1 = (n + 1) * pitch + px(ARROW_IN)
-        y = min(top(states[n]), top(states[n + 1])) - px(ARROW_GAP)
-        arrows.append((x0, x1, y, label))
+        arrows = []
+        for n, label in enumerate(labels):
+            x0 = n * pitch + floor_w - px(ARROW_IN)
+            x1 = (n + 1) * pitch + px(ARROW_IN)
+            y = min(top(states[n]), top(states[n + 1])) - px(ARROW_GAP)
+            arrows.append((x0, x1, y, label))
 
-    asc, desc = font.getmetrics()
-    min_y = min([top(s) for s in states] + [y - px(ARROW_H) - px(LABEL_GAP) - asc - desc for *_, y, _ in arrows])
-    oy = -min_y + px(MARGIN)
-    width = pitch * (len(states) - 1) + floor_w
-    height = oy + px(FLOOR_T) + px(MARGIN)
+        asc, desc = font.getmetrics()
+        min_y = min([top(s) for s in states] + [y - px(ARROW_H) - px(LABEL_GAP) - asc - desc for *_, y, _ in arrows])
+        oy = -min_y + px(MARGIN)
+        width = pitch * (len(states) - 1) + floor_w
+        height = oy + px(FLOOR_T) + px(MARGIN)
 
-    img = Image.new("L", (width, height), 255)
-    d = ImageDraw.Draw(img)
-    lw = max(1, px(LINE_W))
+        img = Image.new("L", (width, height), 255)
+        d = ImageDraw.Draw(img)
+        lw = max(1, px(LINE_W))
 
-    for n, s in enumerate(states):
-        fx = n * pitch
-        d.rectangle([fx, oy, fx + floor_w, oy + px(FLOOR_T)], fill=0)
-        bx = fx + px(FLOOR_PAD)
-        if not s:
-            continue
-        # 外枠を描いてから、段の境目に1本ずつ線を引く（線が二重にならないように）
-        d.rectangle([bx, oy - cell_h * len(s), bx + cell_w, oy], outline=0, width=lw)
-        for h, t in enumerate(s):
-            y1 = oy - cell_h * h
-            if h:
-                d.rectangle([bx, y1 - lw // 2, bx + cell_w, y1 - lw // 2 + lw - 1], fill=0)
-            d.text((bx + cell_w / 2, y1 - cell_h / 2), t, font=font, fill=0, anchor="mm")
+        for n, s in enumerate(states):
+            fx = n * pitch
+            d.rectangle([fx, oy, fx + floor_w, oy + px(FLOOR_T)], fill=0)
+            bx = fx + px(FLOOR_PAD)
+            if not s:
+                continue
+            # 外枠を描いてから、段の境目に1本ずつ線を引く（線が二重にならないように）
+            d.rectangle([bx, oy - cell_h * len(s), bx + cell_w, oy], outline=0, width=lw)
+            for h, t in enumerate(s):
+                y1 = oy - cell_h * h
+                if h:
+                    d.rectangle([bx, y1 - lw // 2, bx + cell_w, y1 - lw // 2 + lw - 1], fill=0)
+                d.text((bx + cell_w / 2, y1 - cell_h / 2), t, font=font, fill=0, anchor="mm")
 
-    for x0, x1, y, label in arrows:
-        y += oy
-        h = px(ARROW_H)
-        # 上半分の楕円で弧を描き、終点に弧の向きに沿った矢じりを付ける
-        d.arc([x0, y - h, x1, y + h], 180, ARROW_END, fill=0, width=lw)
-        cx, cy, a = (x0 + x1) / 2, y, (x1 - x0) / 2
-        t = radians(ARROW_END)
-        ex, ey = cx + a * cos(t), cy + h * sin(t)
-        tx, ty = -a * sin(t), h * cos(t)
-        norm = hypot(tx, ty)
-        tx, ty = tx / norm, ty / norm
-        hl, hw = px(HEAD_LEN), px(HEAD_W) / 2
-        d.polygon(
-            [(ex + tx * hl, ey + ty * hl), (ex - ty * hw, ey + tx * hw), (ex + ty * hw, ey - tx * hw)],
-            fill=0,
-        )
-        if label:
-            d.text(((x0 + x1) / 2, y - h - px(LABEL_GAP)), label, font=font, fill=0, anchor="md")
+        for x0, x1, y, label in arrows:
+            y += oy
+            h = px(ARROW_H)
+            # 上半分の楕円で弧を描き、終点に弧の向きに沿った矢じりを付ける
+            d.arc([x0, y - h, x1, y + h], 180, ARROW_END, fill=0, width=lw)
+            cx, cy, a = (x0 + x1) / 2, y, (x1 - x0) / 2
+            t = radians(ARROW_END)
+            ex, ey = cx + a * cos(t), cy + h * sin(t)
+            tx, ty = -a * sin(t), h * cos(t)
+            norm = hypot(tx, ty)
+            tx, ty = tx / norm, ty / norm
+            hl, hw = px(HEAD_LEN), px(HEAD_W) / 2
+            d.polygon(
+                [(ex + tx * hl, ey + ty * hl), (ex - ty * hw, ey + tx * hw), (ex + ty * hw, ey - tx * hw)],
+                fill=0,
+            )
+            if label:
+                d.text(((x0 + x1) / 2, y - h - px(LABEL_GAP)), label, font=font, fill=0, anchor="md")
 
+        return img
+
+    # wrap 個ずつの状態で行を折り返す。次の行は前の行の最後の状態から始める
+    per = wrap - 1 if wrap and wrap >= 2 else max(1, len(labels))
+    rows = [row(states[i : i + per + 1], labels[i : i + per]) for i in range(0, max(1, len(labels)), per)]
+    width = max(r.width for r in rows)
+    gap = px(ROW_GAP)
+    img = Image.new("L", (width, sum(r.height for r in rows) + gap * (len(rows) - 1)), 255)
+    y = 0
+    for r in rows:
+        img.paste(r, (0, y))
+        y += r.height + gap
+    width, height = img.size
     return img.resize((round(width / SUPERSAMPLE), round(height / SUPERSAMPLE)), Image.LANCZOS)
 
 
@@ -687,7 +707,7 @@ def git(*args, cwd):
 
 def build(name, spec, defaults, out_dir):
     opts = {**defaults, **spec}
-    unknown = set(opts) - {"setup", "code", "steps", "labels", "input", "font", "scale", "base_url"}
+    unknown = set(opts) - {"setup", "code", "steps", "labels", "input", "font", "scale", "base_url", "wrap"}
     if unknown:
         sys.exit(f"dcstack: [{name}] に不明なキーがあります: {', '.join(sorted(unknown))}")
     if ("code" in opts) == ("steps" in opts):
@@ -704,7 +724,7 @@ def build(name, spec, defaults, out_dir):
         dc.run(st)
         states.append([show(x) for x in dc.stack])
 
-    img = render(states, labels, find_font(opts.get("font")), opts.get("scale", 1.0))
+    img = render(states, labels, find_font(opts.get("font")), opts.get("scale", 1.0), opts.get("wrap", 0))
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{name}.png"
     img.save(path, optimize=True)
