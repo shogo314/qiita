@@ -80,24 +80,37 @@ def tdiv(a, b):
 
 
 def to_str_base(n, base):
-    """出力の基数が10以外のときの表記（整数部分のみ対応）。"""
+    """出力の基数が base のときの表記。"""
     if base == 10:
         return str(n)
-    i = n.to_int()
-    if n.s and n.v % 10**n.s:
-        warn(f"出力の基数 {base} での小数は未対応なので整数部分だけ表示します")
-    if i == 0:
+    if n.v == 0:
         return "0"
-    sign = "-" if i < 0 else ""
-    i = abs(i)
-    ds = []
-    while i:
-        i, d = divmod(i, base)
-        ds.append(d)
+    a = abs(n.v)
+    ip, fp = divmod(a, 10**n.s)
     if base <= 16:
-        return sign + "".join(DIGITS[d] for d in reversed(ds))
-    w = len(str(base - 1))
-    return sign + " " + " ".join(str(d).zfill(w) for d in reversed(ds))
+        fmt, sep = (lambda d: DIGITS[d]), ""
+    else:
+        # 16 より大きい基数では、各桁を空白区切りの10進数で書く
+        w = len(str(base - 1))
+        fmt, sep = (lambda d: str(d).zfill(w)), " "
+    ds = []
+    while ip:
+        ip, d = divmod(ip, base)
+        ds.append(d)
+    out = "".join(sep + fmt(d) for d in reversed(ds))
+    if n.s:
+        # base**m >= 10**s となる最小の m 桁まで出す（切り捨て）
+        m = 0
+        while base**m < 10**n.s:
+            m += 1
+        f = Fraction(fp, 10**n.s)
+        fd = []
+        for _ in range(m):
+            f *= base
+            fd.append(int(f))
+            f -= int(f)
+        out += "." + sep.join(fmt(d) for d in fd)
+    return ("-" if n.v < 0 else "") + out
 
 
 def show(x):
@@ -122,7 +135,7 @@ def warn(msg):
 
 
 class DC:
-    """GNU dc 1.4.1 の動作を再現するインタプリタ。"""
+    """GNU dc 1.5.2（AtCoder のバージョン）の動作を再現するインタプリタ。"""
 
     MAX_COMMANDS = 10**6
 
@@ -310,24 +323,19 @@ class DC:
             idx = self.pop_arg()
             x = self.pop()
             if idx is None or idx < 0:
-                raise DCError("array index must be a nonnegative integer", keep=True)
+                raise DCError("array index must be a nonnegative integer")
             if not rs:
                 rs.append((Num(0), {}))
             rs[-1][1][idx] = x
         elif c == ";":
             idx = self.pop_arg()
             if idx is None or idx < 0:
-                raise DCError("array index must be a nonnegative integer", keep=True)
+                raise DCError("array index must be a nonnegative integer")
             self.stack.append(rs[-1][1].get(idx, Num(0)) if rs else Num(0))
         else:
-            # GNU dc はエラーのとき「等しい」として扱う
-            try:
-                a, b = self.pop_nums(2)  # b が一番上
-                s = max(a.s, b.s)
-                diff = b.scaled(s).v - a.scaled(s).v
-            except DCError as e:
-                warn(f"{e}（{c}{r}）")
-                diff = 0
+            a, b = self.pop_nums(2)  # b が一番上
+            s = max(a.s, b.s)
+            diff = b.scaled(s).v - a.scaled(s).v
             ok = {">": diff > 0, "<": diff < 0, "=": diff == 0}[c[-1]]
             if c.startswith("!"):
                 ok = not ok
@@ -384,9 +392,12 @@ class DC:
             self.stack += [q, r]
         elif c == "^":
             a, b = self.pop_nums(2)
-            if b.s and b.v % 10**b.s:
-                warn("指数の小数部分は無視されます")
             e = b.to_int()
+            if b.s and b.v % 10**b.s:
+                if e == 0:
+                    # GNU dc 1.5.2 は整数部分が 0 の小数の指数をエラーにする
+                    raise DCError("exponent too large in raise")
+                warn("Runtime warning: non-zero scale in exponent（小数部分は無視されます）")
             if e >= 0:
                 p = Num(a.v**e, a.s * e)
                 self.stack.append(p.scaled(min(a.s * e, max(k, a.s))))
@@ -409,12 +420,9 @@ class DC:
                 r = -r
             self.stack.append(Num.of(r))
         elif c == "v":
-            a = self.pop()
-            # GNU dc はエラーでも値を取り出したままにする
-            if not isinstance(a, Num):
-                raise DCError("square root of nonnumeric attempted", keep=True)
+            a = self.num(self.pop())
             if a.v < 0:
-                raise DCError("square root of negative number", keep=True)
+                raise DCError("square root of negative number")
             if a.v == 0 or a.v == 10**a.s:
                 # GNU dc は 0 と 1 の平方根を小数点以下0桁で返す
                 self.stack.append(Num(a.v // 10**a.s))
@@ -431,7 +439,9 @@ class DC:
             self.stack[-1], self.stack[-2] = self.stack[-2], self.stack[-1]
         elif c == "R":
             x = self.pop()
-            n = x.to_int() if isinstance(x, Num) else 0
+            if not isinstance(x, Num):
+                raise DCError("rotation count must be numeric")
+            n = x.to_int()
             if n > 0:
                 n = min(n, len(self.stack))
                 if n:
@@ -444,21 +454,21 @@ class DC:
         elif c == "k":
             n = self.pop_arg()
             if n is None or n < 0:
-                raise DCError("scale must be a nonnegative number", keep=True)
+                raise DCError("scale must be a nonnegative number")
             self.k = n
         elif c == "K":
             self.stack.append(Num.of(self.k))
         elif c == "i":
             n = self.pop_arg()
             if n is None or not 2 <= n <= 16:
-                raise DCError("input base must be a number between 2 and 16 (inclusive)", keep=True)
+                raise DCError("input base must be a number between 2 and 16 (inclusive)")
             self.ibase = n
         elif c == "I":
             self.stack.append(Num.of(self.ibase))
         elif c == "o":
             n = self.pop_arg()
             if n is None or n < 2:
-                raise DCError("output base must be a number greater than 1", keep=True)
+                raise DCError("output base must be a number greater than 1")
             self.obase = n
         elif c == "O":
             self.stack.append(Num.of(self.obase))
@@ -475,6 +485,7 @@ class DC:
             x = self.pop()
             self.stack.append(Num.of(0 if isinstance(x, str) else x.s))
         elif c == "a":
+            warn("'a' command is deprecated（GNU dc 1.5.2 は警告を出します）")
             x = self.pop()
             if isinstance(x, str):
                 self.stack.append(x[:1])
@@ -483,14 +494,19 @@ class DC:
         elif c == "x":
             self.execute_value(self.pop(), frames)
         elif c == "?":
-            if self.lines:
-                self.call(frames, self.lines.pop(0) + "\n")
+            if not self.lines:
+                raise Halt()  # 入力の終わりでは dc を終了する
+            self.call(frames, self.lines.pop(0) + "\n")
         elif c == "q":
             self.quit_levels(frames, 2, True)
         elif c == "Q":
             n = self.pop_arg()
-            if n is None or n < 1:
-                raise DCError("Q command requires a number >= 1", keep=True)
+            if n is None or n < 0:
+                raise DCError("Q command requires a number >= 0")
+            if n > len(frames) - 1:
+                # 抜けられるだけ抜けてからエラーにする（取り出した値は戻さない）
+                self.quit_levels(frames, n, False)
+                raise DCError("Q command argument exceeded string execution depth", keep=True)
             self.quit_levels(frames, n, False)
         else:
             raise DCError(f"'{c}' (0{ord(c):o}) unimplemented")
