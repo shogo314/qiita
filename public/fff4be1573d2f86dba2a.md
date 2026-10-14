@@ -6,7 +6,7 @@ tags:
   - 競技プログラミング
   - DC
 private: false
-updated_at: '2021-07-18T00:26:57+09:00'
+updated_at: '2026-10-15T08:21:53+09:00'
 id: fff4be1573d2f86dba2a
 organization_url_name: null
 slide: false
