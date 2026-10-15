@@ -21,6 +21,8 @@ agreed_posting_campaign_term: false
 載せているすべての簡単に書ける問題は[こちらの記事](https://qiita.com/shogo314/items/fa4df4bfeecea9cc651b "現在執筆中")で解説しています。
 
 ABC100までの全ての問題をダブりのないように書いています。
+
+AtCoderのdcは`GNU dc 1.5.2`です。以前の`GNU dc 1.4.1`との違いは[こちらの記事](https://qiita.com/shogo314/items/1b4833f4b66ea8f599d3)にまとめています。
 # dcで簡単に書ける問題
 ### 単純な計算
 ひとつの整数を読み込み2スタックだけの単純な計算で求まるもの
