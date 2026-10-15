@@ -18,7 +18,7 @@ AtCoderで使われているdcは`GNU dc 1.5.2`です。以前のAtCoderでは`G
 
 dcの使い方については連載「競技プログラミングでdcを使う」を見てください。
 
-[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [まとめ](https://qiita.com/shogo314/items/fff4be1573d2f86dba2a)
+[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [まとめ](https://qiita.com/shogo314/items/fff4be1573d2f86dba2a)
 
 以下の出力はすべて、2つのバージョンで実際に実行して確かめたものです。エラーメッセージや警告は標準エラー出力に出るので、表の「出力」には含めていません。AtCoderでは標準エラー出力は採点されません。
 
