@@ -20,9 +20,9 @@ steps = ["[DIFFERENT]", "?", "1111", "%", "0", "=a"]
 wrap = 5
 
 [a096_01]
-setup = "[1+]sx"
+setup = "[1+]sa"
 input = "5 5"
-steps = ["?", "sb", "d", "1-", "r", "lb", "!<x"]
+steps = ["?", "sB", "d", "1-", "r", "lB", "!<a"]
 wrap = 5
 
 [a063_01]
@@ -36,13 +36,13 @@ input = "6 4"
 steps = ["?", "+", "d", "9", "<a"]
 
 [b05_03]
-setup = "[r]sr 3 5"
-steps = ["d", "3R", "d", "3R", "<r", "s."]
+setup = "[r]sa 3 5"
+steps = ["d", "3R", "d", "3R", "<a", "s."]
 wrap = 4
 
 [b05_04]
-setup = "[r]sr 5 3"
-steps = ["d", "3R", "d", "3R", "<r", "s."]
+setup = "[r]sa 5 3"
+steps = ["d", "3R", "d", "3R", "<a", "s."]
 wrap = 4
 
 [a072_02]

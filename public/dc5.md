@@ -38,6 +38,7 @@ agreed_posting_campaign_term: false
 ***
 
 マクロはメモリに入れておくと何度でも使えます。
+この記事では、マクロを入れるメモリには小文字（使う順にa, b, c, …）、数値を入れるメモリには大文字（問題文の変数名）を使います。
 
 ```
 [2*]sa3laxlaxp
@@ -144,7 +145,7 @@ $X-t$を出力すればよいですが、負になるときは0を出力しま�
 1月1日からa月b日までに、月と日が同じ日が何日あるかを求めます。1月からa-1月までに1日ずつあり、さらに$a \leqq b$ならa月a日も含まれます。
 
 ```
-[1+]sx?sbd1-rlb!<xp
+[1+]sa?sBd1-rlB!<ap
 ```
 
 |入力|5 5|
@@ -155,15 +156,15 @@ $X-t$を出力すればよいですが、負になるときは0を出力しま�
 
 ![a096_01.png](https://raw.githubusercontent.com/shogo314/qiita/main/images/dc5/a096_01.png)
 
-「!<x」は一番上の数値が二番目の数値より小さくないときにxを実行するので、$b \geqq a$のときに1を足しています。
+「!<a」は一番上の数値が二番目の数値より小さくないときにaを実行するので、$b \geqq a$のときに1を足しています。
 
 <details><summary>もっと短い書き方</summary><div>
 
 ```
-?sbdlbr/0r^-p
+?sBdlBr/0r^-p
 ```
 
-「?sbdlbr/」で$a$と$b \div a$（切り捨て）を積みます。$a \leqq b$なら$b \div a$は1以上、そうでなければ0です。
+「?sBdlBr/」で$a$と$b \div a$（切り捨て）を積みます。$a \leqq b$なら$b \div a$は1以上、そうでなければ0です。
 次に「0r^」で$0^{b \div a}$を計算します。$b \div a$が1以上なら0、0なら$0^0=1$になります。最後に「-」で$a$から引くので、$a \leqq b$なら$a$、そうでなければ$a-1$が出力されます。
 
 </div></details>
@@ -306,7 +307,7 @@ Bが8以下でAが8より大きいときは、2回目の「8<0」で0が積ま�
 $A \leqq X \leqq A+B$ならYES、そうでなければNOを出力します。
 
 ```
-[[NO]pq]sn?sxsbsalalx<nlalb+lx>n[YES]p
+[[NO]pq]sa?sXsBsAlAlX<alAlB+lX>a[YES]p
 ```
 
 |入力|3 5 4|
@@ -333,7 +334,7 @@ $A \leqq X \leqq A+B$ならYES、そうでなければNOを出力します。
 2つの数の大きい方を残したいときは、次のように書きます。
 
 ```
-[r]sr3 5d3Rd3R<rs.p
+[r]sa3 5d3Rd3R<as.p
 ```
 
 |出力|5|
@@ -341,10 +342,10 @@ $A \leqq X \leqq A+B$ならYES、そうでなければNOを出力します。
 
 ![b05_03.png](https://raw.githubusercontent.com/shogo314/qiita/main/images/dc5/b05_03.png)
 
-「d3Rd3R」で、上から$b,a$と積まれているスタックを、上から$b,a,a,b$にしています。上の2つを「<r」で比べて、$b<a$なら残った2つを「r」で入れ替えます。こうすると残った2つは大きい方が下になるので、「s.」で上を捨てれば大きい方が残ります。
+「d3Rd3R」で、上から$b,a$と積まれているスタックを、上から$b,a,a,b$にしています。上の2つを「<a」で比べて、$b<a$なら残った2つをマクロの中の「r」で入れ替えます。こうすると残った2つは大きい方が下になるので、「s.」で上を捨てれば大きい方が残ります。
 
 ```
-[r]sr5 3d3Rd3R<rs.p
+[r]sa5 3d3Rd3R<as.p
 ```
 
 |出力|5|
@@ -352,14 +353,14 @@ $A \leqq X \leqq A+B$ならYES、そうでなければNOを出力します。
 
 ![b05_04.png](https://raw.githubusercontent.com/shogo314/qiita/main/images/dc5/b05_04.png)
 
-小さい方を残したいときは「<r」を「>r」にします。
+小さい方を残したいときは「<a」を「>a」にします。
 
 ***
 
 [ABC052](https://atcoder.jp/contests/abc052/tasks/abc052_a)
 
 ```
-[r]sr?*sb*lbd3Rd3R<rs.p
+[r]sa?*sC*lCd3Rd3R<as.p
 ```
 
 |入力|3 5 2 7|
@@ -373,11 +374,11 @@ $A \leqq X \leqq A+B$ならYES、そうでなければNOを出力します。
 <details><summary>もっと短い書き方</summary><div>
 
 ```
-?*sY*dlY>Yp
+?*sC*dlC>Cp
 ```
 
 メモリに数値を入れておくと、比較のコマンドでそのメモリを実行したときにその数値が積まれます。これを使うと「r」を入れたマクロがいりません。
-「?\*sY」で$C \times D$をYに入れ、「\*」で$A \times B$を計算します。「dlY>Y」で$C \times D$の方が大きければYを実行して$C \times D$を積むので、一番上は大きい方になります。
+「?\*sC」で$C \times D$をメモリCに入れ、「\*」で$A \times B$を計算します。「dlC>C」で$C \times D$の方が大きければCを実行して$C \times D$を積むので、一番上は大きい方になります。
 小さい方の値がスタックに残ることがありますが、「p」は一番上だけを出力するので問題ありません。
 
 </div></details>
@@ -387,7 +388,7 @@ $A \leqq X \leqq A+B$ならYES、そうでなければNOを出力します。
 [ABC080](https://atcoder.jp/contests/abc080/tasks/abc080_a)
 
 ```
-[r]sr?sb*lbd3Rd3R>rs.p
+[r]sa?sB*lBd3Rd3R>as.p
 ```
 
 |入力|7 17 120|
@@ -413,7 +414,7 @@ ABC052の短い書き方と同じ方法です。$B$をメモリBに入れ、$B$�
 [ABC092](https://atcoder.jp/contests/abc092/tasks/abc092_a)
 
 ```
-[r]sr??d3Rd3R>rs.??d3Rd3R>rs.+p
+[r]sa??d3Rd3R>as.??d3Rd3R>as.+p
 ```
 
 |入力|600<br>300<br>220<br>420|
@@ -440,7 +441,7 @@ $A$と$B$の小さい方は$A - \max(A-B, 0)$で、$\max(x, 0)$は$x$と$|x|$の
 [ABC037](https://atcoder.jp/contests/abc037/tasks/abc037_a)
 
 ```
-[r]sr?scd3Rd3R>rs.lcr/p
+[r]sa?sCd3Rd3R>as.lCr/p
 ```
 
 |入力|3 5 6|
@@ -466,7 +467,7 @@ ABC052の短い書き方と同じ方法で$A,B$の小さい方を一番上にし
 [ABC040](https://atcoder.jp/contests/abc040/tasks/abc040_a)
 
 ```
-[r]sr?dsx-lx1-d3Rd3R>rs.p
+[r]sa?dsX-lX1-d3Rd3R>as.p
 ```
 
 |入力|5 2|
@@ -480,10 +481,10 @@ $n-x$と$x-1$の小さい方を出力しています。
 <details><summary>もっと短い書き方</summary><div>
 
 ```
-?d1-sa-dla<ap
+?d1-sX-dlX<Xp
 ```
 
-$x-1$をメモリaに入れ、「-」で$n-x$を計算します。ABC052の短い書き方と同じ方法で、$x-1$の方が小さければaを実行して積みます。
+$x-1$をメモリXに入れ、「-」で$n-x$を計算します。ABC052の短い書き方と同じ方法で、$x-1$の方が小さければXを実行して積みます。
 
 </div></details>
 

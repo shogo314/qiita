@@ -14,7 +14,7 @@ code = "r"
 
 [b03_04]
 setup = "1 2 3"
-code = "sxlxlx"
+code = "sXlXlX"
 
 [b03_05]
 setup = "[cde]"
@@ -43,5 +43,5 @@ wrap = 5
 
 [a014_01]
 input = "7\n3"
-steps = ["?", "d", "1-", "?", "d", "sa", "/", "1+", "la", "*", "r", "-"]
+steps = ["?", "d", "1-", "?", "d", "sB", "/", "1+", "lB", "*", "r", "-"]
 wrap = 5
