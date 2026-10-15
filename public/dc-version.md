@@ -6,11 +6,13 @@ tags:
   - 競技プログラミング
   - DC
 private: false
-updated_at: ''
-id: null
+updated_at: '2026-10-16T03:22:10+09:00'
+id: 1b4833f4b66ea8f599d3
 organization_url_name: null
 slide: false
 ignorePublish: false
+posting_campaign_uuid: null
+agreed_posting_campaign_term: false
 ---
 # はじめに
 AtCoderで使われているdcは`GNU dc 1.5.2`です。以前のAtCoderでは`GNU dc 1.4.1`が使われていましたが、この2つはいくつかのコマンドの細かい挙動が違います。
