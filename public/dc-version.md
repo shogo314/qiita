@@ -10,7 +10,7 @@ updated_at: ''
 id: null
 organization_url_name: null
 slide: false
-ignorePublish: true
+ignorePublish: false
 ---
 # はじめに
 AtCoderで使われているdcは`GNU dc 1.5.2`です。以前のAtCoderでは`GNU dc 1.4.1`が使われていましたが、この2つはいくつかのコマンドの細かい挙動が違います。
