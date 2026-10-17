@@ -1,0 +1,73 @@
+# AtCoder Beginner ContestのA問題のdcでの解答と解説4 の図
+
+[a076_01]
+input = "2002\n2017"
+steps = ["?", "?", "2", "*", "r", "-"]
+wrap = 4
+
+[a081_01]
+input = "101"
+steps = ["?", "9", "%"]
+
+[a082_01]
+input = "7 4"
+steps = ["?", "+", "1", "+", "2", "/"]
+wrap = 4
+
+[a084_01]
+input = "21"
+steps = ["48", "?", "-"]
+
+[a086_01]
+setup = "[Odd][Even]"
+input = "3 4"
+steps = ["?", "*", "2", "%", "1", "+", "R"]
+wrap = 4
+
+[a086_02]
+setup = "[Odd][Even]"
+input = "1 21"
+steps = ["?", "*", "2", "%", "1", "+", "R"]
+wrap = 4
+
+[a087_01]
+input = "1234\n150\n100"
+steps = ["?", "?", "-", "?", "%"]
+
+[a088_01]
+setup = "[No][Yes]"
+input = "2018\n218"
+steps = ["?", "500", "%", "?", "!<0", "r"]
+wrap = 4
+
+[a088_02]
+setup = "[No][Yes]"
+input = "2763\n0"
+steps = ["?", "500", "%", "?", "!<0", "r"]
+wrap = 4
+
+[a089_01]
+input = "8"
+steps = ["?", "3", "/"]
+
+[a091_01]
+setup = "[No][Yes]"
+input = "19 123 142"
+steps = ["?", "-", "+", "0", "!>0", "r"]
+wrap = 4
+
+[a091_02]
+setup = "[No][Yes]"
+input = "19 123 143"
+steps = ["?", "-", "+", "0", "!>0", "r"]
+wrap = 4
+
+[a099_01]
+setup = "[ABD][ABC]"
+input = "999"
+steps = ["?", "A00", ">0", "r"]
+
+[a099_02]
+setup = "[ABD][ABC]"
+input = "1000"
+steps = ["?", "A00", ">0", "r"]
