@@ -14,8 +14,6 @@ ignorePublish: false
 posting_campaign_uuid: null
 agreed_posting_campaign_term: false
 ---
-この記事は作成途中です。
-
 コマンドについての解説は[こちら](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837)をご覧ください。
 
 載せているすべての簡単に書ける問題は[こちらの記事](https://qiita.com/shogo314/items/fa4df4bfeecea9cc651b)で解説しています。
