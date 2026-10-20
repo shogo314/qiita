@@ -18,7 +18,7 @@ agreed_posting_campaign_term: false
 
 コマンドについての解説は[こちら](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837)をご覧ください。
 
-載せているすべての簡単に書ける問題は[こちらの記事](https://qiita.com/shogo314/items/fa4df4bfeecea9cc651b "現在執筆中")で解説しています。
+載せているすべての簡単に書ける問題は[こちらの記事](https://qiita.com/shogo314/items/fa4df4bfeecea9cc651b)で解説しています。
 
 ABC100までの全ての問題をダブりのないように書いています。
 

@@ -14,7 +14,7 @@ ignorePublish: false
 posting_campaign_uuid: null
 agreed_posting_campaign_term: false
 ---
-[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) **5** [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) 8(執筆中)
+[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) **5** [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)
 
 # はじめに
 前回は比較のコマンドを使って、何も入れていないメモリの0を積むだけの問題を扱いました。今回はメモリに「マクロ」を入れることで、普通のプログラミング言語のif文のような処理を書いていきます。
@@ -491,4 +491,4 @@ $x-1$をメモリXに入れ、「-」で$n-x$を計算します。ABC052の短�
 次回は条件が複雑な問題を扱います。
 
 #
-[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) **5** [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) 8(執筆中)
+[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) **5** [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)

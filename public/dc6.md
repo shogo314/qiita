@@ -14,7 +14,7 @@ ignorePublish: false
 posting_campaign_uuid: null
 agreed_posting_campaign_term: false
 ---
-[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) **6** [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) 8(執筆中)
+[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) **6** [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)
 
 # はじめに
 前回はマクロを使ってif文のような処理を書きました。今回は、条件が「かつ」「または」で組み合わさっていたり、答えが3通り以上に分かれたりする、少し複雑な問題を扱います。新しいコマンドはほとんど出てきません。これまでのコマンドの組み合わせ方を見ていきます。
@@ -488,4 +488,4 @@ aは$A$の順位を出力するマクロです。自分より得点の高い人�
 次回は、マクロで繰り返しを書く方法を勉強します。
 
 #
-[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) **6** [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) 8(執筆中)
+[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) **6** [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)

@@ -14,7 +14,7 @@ ignorePublish: false
 posting_campaign_uuid: null
 agreed_posting_campaign_term: false
 ---
-**1** [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) 8(執筆中)
+**1** [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)
 
 # はじめに
 この記事はAtCoderのABCのA問題をdcで解くためのものです。
@@ -71,4 +71,4 @@ dcでは「A」「B」「C」「D」「E」「F」はそれぞれ「10」「11�
 ここまででも十分速くなりますが、残念ながらA問題といえども、これだけで解ける問題は少ないです。次の記事ではスタックについて勉強します。
 
 #
-**1** [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) 8(執筆中)
+**1** [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) [7](https://qiita.com/shogo314/items/23ac5a98e316802bed87) [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)

@@ -14,7 +14,7 @@ ignorePublish: false
 posting_campaign_uuid: null
 agreed_posting_campaign_term: false
 ---
-[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) **7** 8(執筆中)
+[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) **7** [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)
 
 # はじめに
 前回までは、マクロを使ってif文のような処理を書いてきました。今回は、マクロの中で自分自身を実行することで、for文やwhile文のような繰り返しを書きます。
@@ -140,4 +140,4 @@ aは2日目から$N$日目までの$N-1$回実行されるので、「?」は入
 次回は、文字列や負の数を読み込む問題を扱います。
 
 #
-[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) **7** 8(執筆中)
+[1](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837) [2](https://qiita.com/shogo314/items/059094162959029cce3e) [3](https://qiita.com/shogo314/items/6838b0beb84f911f0515) [4](https://qiita.com/shogo314/items/a7b6668602bb976ef940) [5](https://qiita.com/shogo314/items/2c48e1db9574ef0c61a6) [6](https://qiita.com/shogo314/items/b3995de81116b7ca5465) **7** [8](https://qiita.com/shogo314/items/50c4fe35128b1027ccc1)
