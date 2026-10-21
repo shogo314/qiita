@@ -6,7 +6,7 @@ tags:
   - 競技プログラミング
   - DC
 private: false
-updated_at: '2026-10-20T17:53:08+09:00'
+updated_at: '2026-10-21T02:52:07+09:00'
 id: fff4be1573d2f86dba2a
 organization_url_name: null
 slide: false
@@ -14,7 +14,7 @@ ignorePublish: false
 posting_campaign_uuid: null
 agreed_posting_campaign_term: false
 ---
-コマンドについての解説は[こちら](https://qiita.com/shogo314/items/abdf5e8e9e213bafe837)をご覧ください。
+コマンドについての解説は[こちら](https://qiita.com/shogo314/items/c6b88b5d8a9bc00433de)をご覧ください。
 
 載せているすべての簡単に書ける問題は[こちらの記事](https://qiita.com/shogo314/items/fa4df4bfeecea9cc651b)で解説しています。
 
